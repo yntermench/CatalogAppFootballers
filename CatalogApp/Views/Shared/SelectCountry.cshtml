@@ -1,0 +1,8 @@
+﻿@model IEnumerable<Footballer>
+
+<select>
+    @foreach (var footballer in Model)
+    {
+        <option>@footballer.Country</option>
+    }
+</select>

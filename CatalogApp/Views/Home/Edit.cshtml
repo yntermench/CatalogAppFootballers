@@ -1,0 +1,66 @@
+﻿@model Footballer
+
+<form asp-action="List" method="post">
+    <input type="hidden" asp-for="FootballerId" />
+    <div>
+        <label asp-for="Name"></label>
+        <div>
+            <span asp-validation-for="Name"></span>
+        </div>
+        <input asp-for="Name" />
+
+        <label asp-for="Surname"></label>
+        <div>
+            <span asp-validation-for="Surname"></span>
+        </div>
+        <input asp-for="Surname" />
+
+        <label asp-for="Gender"></label>
+        <div>
+            <span asp-validation-for="Gender"></span>
+        </div>
+        <input asp-for="Gender" />
+
+        <label asp-for="DateBirth"></label>
+        <div>
+            <span asp-validation-for="DateBirth"></span>
+        </div>
+        <input asp-for="DateBirth" />
+
+        <label asp-for="NameCommand"></label>
+        <select asp-for="NameCommand" asp-items="ViewBag.NameCommand">
+            <option selected="selected" disabled="disabled">Выберите команду или добавьте новую</option>
+        </select>
+        <label asp-for="NameCommand"></label>
+        <div>
+            <span asp-validation-for="NameCommand"></span>
+        </div>
+
+        <label asp-for="Country"></label>
+        <select asp-for="Country" asp-items="ViewBag.Countries" id="multiple">
+            
+            <option selected="selected" disabled="disabled">Выберите страну</option>
+        </select>
+    </div>
+
+    <div></div>
+
+    <script>
+
+    $(document).ready(function () {
+
+        $("#multiple").select2({
+            placeholder: "Select or add tags",
+            tags: true,
+            tokenSeparators: [",", " "],
+            createSearchChoice:function(term, data) {
+                if ( $(data).filter( function() {
+                            return this.text.localeCompare(term)===0;
+                        }).length===0)
+                {
+                    return { id: term, text:term };
+                }
+            }
+        });
+    </script>
+</form>
